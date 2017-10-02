@@ -1,0 +1,26 @@
+<% include ../header %>
+	<table class="table">
+		<thead class="thead-inverse">
+			<tr>
+				<th colspan="3">Category</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for (var i = 0; i < category.length; i++) { %>
+				<tr>
+					<form action="/shop/category?_method=put" method="post">
+						<td>
+							<input type="text" class="form-control" name="category" value="<%= category[i] %>">
+						</td>
+						<td style="width: 90px;">
+							<input type="hidden" name="id" value="<%= i %>">
+							<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+							<input type="submit" class="btn btn-primary" value="Update">
+						</td>
+					</form>
+				</tr>
+			<% } %>
+		</tbody>
+	</table>
+	<p><a class="float-right mt-3 btn btn-primary" href="/shop">Back</a></p>
+<% include ../footer %>

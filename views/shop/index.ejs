@@ -1,0 +1,29 @@
+<% include ../header %>
+	<h1>Shop <a href="/shop/category" class="float-right btn btn-primary">Category</a></h1>
+	<div class="row my-3">
+		<% for (var i = 0; i < products.length; i++) { %>
+			<div class="col-md-4 mb-3">
+				<div class="card">
+					<div class="card-header">
+						<h2>
+							<a href="/shop/<%= i %>"><%= products[i].title %></a>
+							<small class="float-right"><%= category[products[i].category] %></small>
+						</h2>
+					</div>
+					<div class="card-body">
+						<img class="card-img-top" src="<%= products[i].img %>" alt="">
+						<h4 class="text-info mb-3"><%= products[i].body %></h4>
+						
+						<form class="form-inline" action="/shop/<%= i %>?_method=delete" method="post">
+							<a class="btn btn-primary mr-3" href="/shop/<%= i %>/edit">Edit</a>
+							<button type="submit" class="btn btn-danger">Delete</button>
+							<input type="hidden" name="id" value="<%= i %>">
+							<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+						</form>
+					</div>
+				</div>
+			</div>
+		<% } %>
+	</div>
+	<p><a class="btn btn-success" href="/shop/new">Add new</a></p>
+<% include ../footer %>
